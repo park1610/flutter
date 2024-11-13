@@ -1,39 +1,63 @@
 import 'package:flutter/material.dart';
 
-
-class barathi
- extends StatelessWidget {
-  const barathi
-  ({super.key});
-  
-
-
+class barathi extends StatelessWidget {
+  const barathi({super.key});
   @override
   Widget build(BuildContext context) {
-
-    return  Scaffold(
-        backgroundColor: const Color.fromARGB(255, 160, 171, 155),
+    return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 249, 252, 248),
         appBar: AppBar(
-          leading: const Icon(Icons.menu),
-          backgroundColor: const Color.fromARGB(255, 213, 232, 5),
-          title: const Text(
-            "New App",
-            textAlign: TextAlign.start,
+          backgroundColor: const Color.fromARGB(255, 208, 208, 205),
+          title: Center(
+            child: Text(
+              "Home ",
+              textAlign: TextAlign.start,
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: () {}),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 216, 213, 216),
+                ),
+                child: Text(
+                  'Settings',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              ListTile(
+                title: const Text('Profile'),
+                onTap: () {
+                  //NavigationDestination(
+                  //   icon: Icon(Icons.settings),
+                  //   selectedIcon: Icon(Icons.settings),
+                  //   label: ('Settings'),
+                  //  );
+                  // // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: const Text('Account'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+            ],
           ),
         ), // AppBar
-        body: const Column(
-                 
-              
-              children: [
-                Text(
-                 "Welcome",
-                  style: TextStyle(color: Color.fromARGB(255, 209, 28, 28), fontSize: 50 ),
-                  selectionColor: Color.fromARGB(0, 23, 23, 186),
-                ),
-              ],
-            ),
+        body: Column(
+          children: [
+            Image.asset("lib/assets/image/logo.png"),
+            // FlutterLogo(size: 200,),
           
+          ],
+        )
         ); // Container
-
   }
 }

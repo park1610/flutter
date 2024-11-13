@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pargavan/newapp.dart';
-import 'package:pargavan/notification.dart';
-
+import 'package:pargavan/login.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -28,9 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: _currentPageIndex==1? const Notification1():barathi()
-      ),
+      body: barathi(),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentPageIndex,
         onDestinationSelected: _onDestinationSelected,
@@ -51,14 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
             selectedIcon: Icon(Icons.menu_open),
             label: 'Menu',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.settings),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
         ],
       ),
-    );
+      );
   }
 }
 
