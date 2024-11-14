@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pargavan/main.dart';
 import 'package:pargavan/newapp.dart';
+import 'package:pargavan/navigate.dart';
 
 void main() {
   runApp(const MyApp());
+
 }
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -17,6 +19,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('login screen'),        
@@ -83,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       onPressed: (){
-                     Get.to(barathi());
+                     Get.to(MyHomePage());
                       },
                       color: Colors.purple,
                       textColor: Colors.white,

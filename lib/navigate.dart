@@ -11,11 +11,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentPageIndex =0
+  int _currentPageIndex =1
   ;
   
     void _onDestinationSelected(int index) {
-      if(index==10){
+      if(index==1){
 
       }
     setState(() {
