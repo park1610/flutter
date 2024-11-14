@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pargavan/newapp.dart';
-import 'package:pargavan/login.dart';
+import 'package:pargavan/home.dart';
+import 'package:pargavan/signup.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -11,7 +11,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentPageIndex =1
+  int _currentPageIndex =0
   ;
   
     void _onDestinationSelected(int index) {
