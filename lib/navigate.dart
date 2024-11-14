@@ -61,9 +61,7 @@ class NavigationBarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     throw UnimplementedError();
-  }
-
- 
+  } 
 
 }
 
