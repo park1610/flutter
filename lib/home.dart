@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:pargavan/main.dart';
 
 class barathi extends StatelessWidget {
   const barathi({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 62, 224, 8),
+        backgroundColor: const Color.fromARGB(255, 236, 237, 236),
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 208, 208, 205),
-          title: Center(
-            child: Text(
-              "Home ",
-              textAlign: TextAlign.start,
-            ),
+          title: Text(              
+            "Home ",
+            textAlign: TextAlign.center,              
           ),
         ),
         floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -44,52 +43,87 @@ class barathi extends StatelessWidget {
             ],
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 50,bottom: 20),
-                      child: Text('all todos',style: TextStyle(fontSize: 30,fontWeight: FontWeight.w500),),
-                    )
-                  ],
-                ),
+            
+        body: Container(          
+          padding: const EdgeInsets.all(8.0),
+          child: ListView( 
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            prototypeItem: const SizedBox(width: 200, height: 100,), 
+                physics: const AlwaysScrollableScrollPhysics(), 
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 1',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 2',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 3',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 4',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 5',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 6',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 7',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 8',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 9',style: TextStyle(fontSize: 30),)
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(16),
+                    color: Colors.blue,
+                    height: 200,
+                    child: const Text('Item 10',style: TextStyle(fontSize: 30),)
+                  ),
+                ],
               ),
-              
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),                
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(0),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color:Colors.black,
-                      size: 20,                      
-                    ),
-                    prefixIconConstraints: BoxConstraints(
-                      maxHeight: 20,
-                      maxWidth: 25,
-                    ),
-                    border: InputBorder.none,
-                    hintText: 'Search',
-                    hintStyle: TextStyle(color: Colors.grey)
-                    ),
-                ),                
-              )
-              
-            ],
-          ),
-        ),
-       
-          
-        );        
-        // Container
+        )
+    );     
   }
 }
