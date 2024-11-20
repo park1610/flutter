@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pargavan/navigate.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -9,94 +8,99 @@ class Signup extends StatefulWidget {
   State<Signup> createState() => _SignupState();
 }
 
-final newkey = GlobalKey<FormState>();
-
 class _SignupState extends State<Signup> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign Up'),
       ),
-      body: Form(
-        key: newkey,
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                'Sign Up',
-                style: TextStyle(
-                  fontSize: 35,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
-                  keyboardType: TextInputType.name,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    hintText: 'Enter Name',
-                    prefixIcon: Icon(Icons.account_box),
-                    border: OutlineInputBorder(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                const Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
                   ),
+                ),
+                const SizedBox(height: 30),
+
+                // Name Input Box
+                TextFormField(
+                  keyboardType: TextInputType.name,
+                  decoration: _buildInputDecoration(
+                    'Name',
+                    'Enter Name',
+                    Icons.account_box,
+                    Colors.black,
+                  ),
+                  style: const TextStyle(fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w500),
                   validator: (value) {
                     return value == null || value.isEmpty ? 'Enter Name' : null;
                   },
                 ),
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
+                const SizedBox(height: 10),
+
+                // Email Input Box
+                TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter Email',
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(),
+                  decoration: _buildInputDecoration(
+                    'Email',
+                    'Enter Email',
+                    Icons.email,
+                    Colors.black,
                   ),
+                  style: const TextStyle(fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w500),
                   validator: (value) {
                     return value == null || value.isEmpty ? 'Enter Email' : null;
                   },
                 ),
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
+                const SizedBox(height: 10),
+
+                // Password Input Box
+                TextFormField(
                   keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    hintText: 'Enter Password',
-                    prefixIcon: Icon(Icons.lock),
-                    border: OutlineInputBorder(),
+                  decoration: _buildInputDecoration(
+                    'Password',
+                    'Enter Password',
+                    Icons.lock,
+                    Colors.black,
                   ),
                   obscureText: true,
+                  style: const TextStyle(fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w500),
                   validator: (value) {
                     return value == null || value.isEmpty ? 'Enter Password' : null;
                   },
                 ),
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: 'Gender',
-                    hintText: 'Select Gender',
-                    prefixIcon: Icon(Icons.person_outline),
-                    border: OutlineInputBorder(),
+                const SizedBox(height: 10),
+
+                // Gender Dropdown
+                DropdownButtonFormField<String>(
+                  decoration: _buildInputDecoration(
+                    'Gender',
+                    'Select Gender',
+                    Icons.person_outline,
+                    Colors.black,
                   ),
                   items: ['Male', 'Female', 'Others'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value),
+                      child: Text(
+                        value,
+                        style: const TextStyle(fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w500),
+                      ),
                     );
                   }).toList(),
                   onChanged: (String? value) {},
@@ -104,26 +108,61 @@ class _SignupState extends State<Signup> {
                     return value == null || value.isEmpty ? 'Select Gender' : null;
                   },
                 ),
-              ),
-              const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
-                child: MaterialButton(
+                const SizedBox(height: 20),
+                MaterialButton(
                   minWidth: double.infinity,
                   onPressed: () {
-                    if (newkey.currentState!.validate()) {
-                      Get.to(MyHomePage());
+                    if (_formKey.currentState!.validate()) {
+                      Get.snackbar('Success', 'Form Submitted Successfully!');
                     }
                   },
-                  color: Colors.deepPurpleAccent,
-                  textColor: Colors.white,
-                  child: const Text('Sign Up'),
+                  color: const Color.fromARGB(255, 218, 224, 220),
+                  textColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  elevation: 5,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  InputDecoration _buildInputDecoration(String label, String hint, IconData icon, Color color) {
+    return InputDecoration(
+      labelText: label,
+      hintText: hint,
+      labelStyle: TextStyle(color: color, fontWeight: FontWeight.w600),
+      hintStyle: const TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
+      prefixIcon: Icon(icon, color: color),
+      filled: true,
+      fillColor: Colors.grey.shade100,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: color, width: 2),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade300, width: 1.5),
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
     );
   }
 }

@@ -14,7 +14,6 @@ class barathi extends StatelessWidget {
             textAlign: TextAlign.center,              
           ),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {}),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -49,79 +48,11 @@ class barathi extends StatelessWidget {
           child: ListView( 
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             prototypeItem: const SizedBox(width: 200, height: 100,), 
-                physics: const AlwaysScrollableScrollPhysics(), 
+                physics: const AlwaysScrollableScrollPhysics(),  
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 1',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 2',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 3',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 4',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 5',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 6',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 7',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 8',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 9',style: TextStyle(fontSize: 30),)
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(16),
-                    color: Colors.blue,
-                    height: 200,
-                    child: const Text('Item 10',style: TextStyle(fontSize: 30),)
-                  ),
-                ],
+                  Image.asset('assets/logo.png'),
+                ],              
+              
               ),
         )
     );     
