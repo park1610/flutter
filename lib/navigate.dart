@@ -13,7 +13,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentPageIndex =0
   ;
-  
     void _onDestinationSelected(int index) {
       if(index==1){
 
@@ -27,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: barathi(),
+      body:barathi(),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentPageIndex,
         onDestinationSelected: _onDestinationSelected,
@@ -52,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       );
   }
+  
+  barathi() {}
 }
 
 class NavigationBarApp extends StatelessWidget {

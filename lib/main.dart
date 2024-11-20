@@ -120,7 +120,7 @@ class _MyAppState extends State<MyApp> {
                         print(emailController.text);
                         print(passwordController.text);
                         if (newkey.currentState!.validate()) {
-                          Get.to(MyHomePage());
+                          Get.to(const MyHomePage());
                           emailController.clear();
                           passwordController.clear();
                         }
