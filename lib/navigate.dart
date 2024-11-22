@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
   
-  barathi() {}
+  // barathi() {}
 }
 
 class NavigationBarApp extends StatelessWidget {

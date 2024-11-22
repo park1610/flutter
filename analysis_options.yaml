@@ -12,7 +12,7 @@ analyzer:
     avoid_types_as_parameter_names: ignore
     camel_case_types: ignore
     dead_code: ignore
-    prefer_const_constructors: ignore ignore
+    prefer_const_constructors: ignore
     prefer_typing_uninitialized_variables: ignore
     unused_import: ignore
 include: package:flutter_lints/flutter.yaml
