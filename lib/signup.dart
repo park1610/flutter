@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pargavan/home.dart';
-import 'package:pargavan/navigate.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -135,7 +134,7 @@ class _SignupState extends State<Signup> {
                       minWidth: double.infinity,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Get.to(const MyHomePage());
+                          Get.to( barathi());
                           namecontroller.clear();
                           emailController.clear();
                           passwordController.clear();                         

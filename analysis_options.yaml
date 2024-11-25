@@ -15,6 +15,7 @@ analyzer:
     prefer_const_constructors: ignore
     prefer_typing_uninitialized_variables: ignore
     unused_import: ignore
+    use_function_type_syntax_for_parameters: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

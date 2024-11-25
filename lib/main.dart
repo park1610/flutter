@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pargavan/navigate.dart';
 import 'package:pargavan/signup.dart';
 import 'package:pargavan/home.dart';
 void main() {
@@ -12,11 +11,6 @@ class SnackbarGlobal {
   static GlobalKey<ScaffoldMessengerState> key =
       GlobalKey<ScaffoldMessengerState>();
 
-  static void show(String message) {
-    key.currentState!
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
-  }
 }
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -35,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -117,9 +112,11 @@ class _MyAppState extends State<MyApp> {
                         minWidth: double.infinity,
                         onPressed: () {
                           if (newkey.currentState!.validate()) {
-                            Get.to(const MyHomePage());
+                            Get.to(barathi());
                             emailController.clear();
-                            passwordController.clear();        
+                            passwordController.clear();  
+                            print(emailController);
+                            print(passwordController);      
 
                           }
                         },

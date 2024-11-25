@@ -49,6 +49,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  badges: ^3.1.2
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,11 +65,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets\images\one.jpg 
-  - assets\images\two.jpg
-  - assets\images\three.jpg
-  - assets\images\four.jpg
-  - assets\images\five.jpg
+  - assets\images\Ballchair.jpg
+  - assets\images\Massagechair.jpg
+  - assets\images\Cantileverchair.jpg
+  - assets\images\Stoolchair.jpg
+  - assets\images\Tulipchair.jpg
+  - assets\images\LadderBackchair.jpg
+  - assets\images\Thronechair.jpg
+  - assets\images\Armchair.jpg
  
      
 
