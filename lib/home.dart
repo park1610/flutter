@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pargavan/description.dart'; 
-import 'package:pargavan/utils/detail.dart';
+import 'package:get/get.dart';
+import 'package:pargavan/description.dart';
+import 'package:pargavan/details.dart';
+import 'category.dart'; // Ensure this import points to your Category widget.
 
 class barathi extends StatelessWidget {
   barathi({super.key});
@@ -102,17 +104,25 @@ class barathi extends StatelessWidget {
                       const SizedBox(height: 30),
                       Container(
                         height: 50,
-                        margin: const EdgeInsets.symmetric(horizontal: 40),
+                        margin: const EdgeInsets.symmetric(horizontal: 90),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        child: const Center(
-                          child: Text(
-                            "Shop Now",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: MaterialButton(
+                            onPressed: () {
+                            
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Text(
+                              "Shop Now",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -141,7 +151,7 @@ class barathi extends StatelessWidget {
                                   imageName: product['name']!,
                                   description:
                                       productDescriptions[product['name']] ??
-                                      'No description available for this product',
+                                          'No description available for this product',
                                 ),
                               ),
                             );
@@ -184,12 +194,15 @@ class barathi extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(1.10),
+        padding: EdgeInsets.zero,
         child: NavigationBar(
           indicatorColor: Colors.grey,
           backgroundColor: Colors.white70,
-          onDestinationSelected: (index) =>
-              _onDestinationSelected(index, context),
+          onDestinationSelected: (index) {
+            if (index == 1) {
+              Get.to(() => const Category(category: 'All Category'));  
+            }
+          },
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.home),
@@ -197,24 +210,26 @@ class barathi extends StatelessWidget {
               label: 'Home',
             ),
             NavigationDestination(
+              icon: Icon(Icons.select_all_rounded),
+              selectedIcon: Icon(Icons.all_out_outlined),
+              label: 'All Category',
+            ),
+             NavigationDestination(
               icon: Icon(Icons.shopping_cart_outlined),
               selectedIcon: Icon(Icons.shopping_cart),
               label: 'Cart',
             ),
             NavigationDestination(
-              icon: Icon(Icons.menu_open_rounded),
+              icon: Icon(Icons.menu),
               selectedIcon: Icon(Icons.menu_open),
               label: 'Order',
-            ),
+            ),           
           ],
         ),
       ),
     );
   }
-
-  
 }
 
-class _onDestinationSelected {
-  _onDestinationSelected(int index, BuildContext context);
-}
+
+

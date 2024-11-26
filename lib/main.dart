@@ -115,8 +115,8 @@ class _MyAppState extends State<MyApp> {
                             Get.to(barathi());
                             emailController.clear();
                             passwordController.clear();  
-                            print(emailController);
-                            print(passwordController);      
+                            // print(emailController);
+                            // print(passwordController);      
 
                           }
                         },
