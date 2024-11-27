@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pargavan/cart.dart';
 
 class Details extends StatelessWidget {
   final String image;       // Image path
@@ -157,7 +159,12 @@ class Details extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 120),                  
-                  child: ElevatedButton.icon(onPressed: (){},                
+                  child: ElevatedButton.icon(onPressed: (){
+                    Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => Cart()),
+                    );                                    
+                  },                
                   icon: const Icon(Icons.send,color: Colors.black,),          
                   label: const Text(
                     'Add to Cart' ,

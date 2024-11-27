@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pargavan/cart.dart';
 import 'package:pargavan/description.dart';
 import 'package:pargavan/details.dart';
+import 'package:pargavan/order.dart';
 import 'category.dart'; // Ensure this import points to your Category widget.
 
 class barathi extends StatelessWidget {
@@ -17,6 +19,8 @@ class barathi extends StatelessWidget {
     {'image': 'assets/images/seven.jpg', 'name': 'Thronechair'},
     {'image': 'assets/images/eight.jpg', 'name': 'Armchair'},
   ];
+  
+  get onDestinationSelected => null;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +36,13 @@ class barathi extends StatelessWidget {
                 Scaffold.of(context).openDrawer();
               },
             );
+            
           },
         ),
         title: const Text("Home"),
       ),
+      
+    
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -65,10 +72,20 @@ class barathi extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Container(
+        child: Container(  
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: <Widget>[
+              TextField(
+                decoration: InputDecoration(                                  
+                  border: OutlineInputBorder(                    
+                    borderRadius: BorderRadius.circular(50),  
+                  ),
+                  hintText: "Search you're Looking For",
+                  prefixIcon: Icon(Icons.search),
+                ),
+              ),
+              SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 height: 250,
@@ -112,7 +129,7 @@ class barathi extends StatelessWidget {
                         child: Center(
                           child: MaterialButton(
                             onPressed: () {
-                            
+                         Get.to(() => const Category(category: 'All Category'));                              
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -200,9 +217,16 @@ class barathi extends StatelessWidget {
           backgroundColor: Colors.white70,
           onDestinationSelected: (index) {
             if (index == 1) {
-              Get.to(() => const Category(category: 'All Category'));  
+              Get.to(() => const Category(category: 'All Category'));                
+            }
+            else  if (index == 2) {
+              Get.to(() => const Cart());
+            }
+            else if (index == 3 ) {
+              Get.to(() => const Order());
             }
           },
+          
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.home),
@@ -213,7 +237,7 @@ class barathi extends StatelessWidget {
               icon: Icon(Icons.select_all_rounded),
               selectedIcon: Icon(Icons.all_out_outlined),
               label: 'All Category',
-            ),
+            ),           
              NavigationDestination(
               icon: Icon(Icons.shopping_cart_outlined),
               selectedIcon: Icon(Icons.shopping_cart),
