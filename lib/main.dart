@@ -5,13 +5,6 @@ import 'package:pargavan/home.dart';
 void main() {
   runApp(const MyApp());     
 }
-
-
-class SnackbarGlobal {
-  static GlobalKey<ScaffoldMessengerState> key =
-      GlobalKey<ScaffoldMessengerState>();
-
-}
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -115,10 +108,7 @@ class _MyAppState extends State<MyApp> {
                             Get.to(barathi());
                             emailController.clear();
                             passwordController.clear();  
-                            // print(emailController);
-                            // print(passwordController);      
-
-                          }
+                         }
                         },
                         color: Colors.deepPurple,
                         textColor: Colors.white,

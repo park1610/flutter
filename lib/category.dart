@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pargavan/description.dart';
-import 'package:pargavan/details.dart'; 
+import 'package:pargavan/details.dart';
 
 class Category extends StatefulWidget {
   final String category;
@@ -12,23 +12,15 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-
-
   final List<Map<String, String>> products = [
-    {'image': 'assets/images/one.jpg', 'name': 'Ballchair'},
-    {'image': 'assets/images/two.jpg', 'name': 'Massagechair'},
-    {'image': 'assets/images/three.jpg', 'name': 'Cantileverchair'},
-    {'image': 'assets/images/four.jpg', 'name': 'Stoolchair'},
-    {'image': 'assets/images/five.jpg', 'name': 'Tulipchair'},
-    {'image': 'assets/images/six.jpg', 'name': 'Ladderbackchair'},
-    {'image': 'assets/images/seven.jpg', 'name': 'Thronechair'},
-    {'image': 'assets/images/eight.jpg', 'name': 'Armchair'},
-     {'image': 'assets/images/three.jpg', 'name': 'Cantileverchair'},
-    {'image': 'assets/images/four.jpg', 'name': 'Stoolchair'},
-    {'image': 'assets/images/five.jpg', 'name': 'Tulipchair'},
-    {'image': 'assets/images/six.jpg', 'name': 'Ladderbackchair'},
-    {'image': 'assets/images/seven.jpg', 'name': 'Thronechair'},
-    {'image': 'assets/images/eight.jpg', 'name': 'Armchair'},
+    {'image': 'assets/images/Ballchair.jpg', 'name': 'Ball Chair'},
+    {'image': 'assets/images/Massagechair.jpg', 'name': 'Massage Chair'},
+    {'image': 'assets/images/Cantileverchair.jpg', 'name': 'Cantilever Chair'},
+    {'image': 'assets/images/Stoolchair.jpg', 'name': 'Stool Chair'},
+    {'image': 'assets/images/Tulipchair.jpg', 'name': 'Tulip Chair'},
+    {'image': 'assets/images/LadderBackchair.jpg', 'name': 'Ladder Back Chair'},
+    {'image': 'assets/images/Thronechair.jpg', 'name': 'Throne Chair'},
+    {'image': 'assets/images/Armchair.jpg', 'name': 'Arm Chair'},
   ];
 
   @override
@@ -36,17 +28,15 @@ class _CategoryState extends State<Category> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white70,
-        title: Text(widget.category), 
-          
+        title: Text(widget.category),
       ),
       body: Container(
         color: Colors.grey,
         child: Padding(
-          padding: const EdgeInsets.all(4.0), 
-                 
+          padding: const EdgeInsets.all(4.0),
           child: GridView.builder(
-            padding: const EdgeInsets.all(8.0),  
-            physics: BouncingScrollPhysics(),      
+            padding: const EdgeInsets.all(8.0),
+            physics: const BouncingScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10,
@@ -55,17 +45,17 @@ class _CategoryState extends State<Category> {
             itemCount: products.length,
             itemBuilder: (context, index) {
               final product = products[index];
-          
+
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Details(
-                        image: product['image']!,
-                        imageName: product['name']!,
-                        description:
-                            productDescriptions[product['name']] ?? 'No description available for this product',
+                     builder: (context) => Details(
+                                image: product['image'] ?? 'assets/images/default.jpg',
+                                imageName: product['name'] ?? 'Unknown Product',
+                                description: productDescriptions[product['name']] ??
+                                    'No description available for this product',
                       ),
                     ),
                   );
@@ -92,7 +82,7 @@ class _CategoryState extends State<Category> {
                           ),
                           child: const Icon(
                             Icons.bookmark_border,
-                            size: 15,
+                            size: 20,
                           ),
                         ),
                       ),

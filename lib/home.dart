@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pargavan/cart.dart';
-import 'package:pargavan/description.dart';
-import 'package:pargavan/details.dart';
-import 'package:pargavan/order.dart';
+import 'cart.dart';
+import 'description.dart';
+import 'details.dart';
+import 'order.dart';
 import 'category.dart'; // Ensure this import points to your Category widget.
 
-class barathi extends StatelessWidget {
+class barathi extends StatefulWidget {
   barathi({super.key});
 
+  @override
+  State<barathi> createState() => _barathiState();
+}
+
+class _barathiState extends State<barathi> {
   final List<Map<String, String>> _products = [
-    {'image': 'assets/images/one.jpg', 'name': 'Ballchair'},
-    {'image': 'assets/images/two.jpg', 'name': 'Massagechair'},
-    {'image': 'assets/images/three.jpg', 'name': 'Cantileverchair'},
-    {'image': 'assets/images/four.jpg', 'name': 'Stoolchair'},
-    {'image': 'assets/images/five.jpg', 'name': 'Tulipchair'},
-    {'image': 'assets/images/six.jpg', 'name': 'Ladderbackchair'},
-    {'image': 'assets/images/seven.jpg', 'name': 'Thronechair'},
-    {'image': 'assets/images/eight.jpg', 'name': 'Armchair'},
+    {'image': 'assets/images/Ballchair.jpg', 'name': 'Ballchair'},
+    {'image': 'assets/images/Massagechair.jpg', 'name': 'Massagechair'},
+    {'image': 'assets/images/Cantileverchair.jpg', 'name': 'Cantileverchair'},
+    {'image': 'assets/images/Stoolchair.jpg', 'name': 'Stoolchair'},
+    {'image': 'assets/images/Tulipchair.jpg', 'name': 'Tulipchair'},
+    {'image': 'assets/images/LadderBackchair.jpg', 'name': 'LadderBackchair'},
+    {'image': 'assets/images/Thronechair.jpg', 'name': 'Thronechair'},
+    {'image': 'assets/images/Armchair.jpg', 'name': 'Armchair'},
   ];
-  
-  get onDestinationSelected => null;
+
+List<double>imageprice =[10,20,30,40,50,60,70,80]; 
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +41,10 @@ class barathi extends StatelessWidget {
                 Scaffold.of(context).openDrawer();
               },
             );
-            
           },
         ),
         title: const Text("Home"),
-      ),
-      
-    
+      ),      
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -70,37 +72,43 @@ class barathi extends StatelessWidget {
             ),
           ],
         ),
+      
       ),
-      body: SafeArea(
-        child: Container(  
-          padding: const EdgeInsets.all(20.0),
+      body: SafeArea(        
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
+              SizedBox(height: 20),
               TextField(
-                decoration: InputDecoration(                                  
-                  border: OutlineInputBorder(                    
-                    borderRadius: BorderRadius.circular(50),  
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(                  
+                    borderRadius: BorderRadius.circular(90),                  
                   ),
-                  hintText: "Search you're Looking For",
-                  prefixIcon: Icon(Icons.search),
+                  hintText: "Search you're looking for chair",
+                  prefixIcon: Icon(Icons.search)
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                height: 250,
+              SizedBox(height: 10),            
+              Container(   
+                padding: EdgeInsets.zero,                         
+                width: MediaQuery.of(context).size.width*1,
+                height: 250,              
+                 margin: const EdgeInsets.symmetric(horizontal: 7.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: const DecorationImage(
-                    image: AssetImage('assets/images/one.jpg'),
+                    image: AssetImage('assets/images/Ballchair.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
                 child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(
                       begin: Alignment.bottomRight,
+                      end: Alignment.topLeft,
                       colors: [
                         Colors.black.withOpacity(.4),
                         Colors.black.withOpacity(.2),
@@ -129,7 +137,7 @@ class barathi extends StatelessWidget {
                         child: Center(
                           child: MaterialButton(
                             onPressed: () {
-                         Get.to(() => const Category(category: 'All Category'));                              
+                              Get.to(() => const Category(category: 'All Category'));
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -156,19 +164,19 @@ class barathi extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  children: _products
-                      .map(
-                        (product) => GestureDetector(
-                          onTap: () {
+                  children: List.generate(_products.length, (index) {
+            final product = _products[index];
+            return GestureDetector(
+              onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => Details(
-                                  image: product['image']!,
-                                  imageName: product['name']!,
-                                  description:
-                                      productDescriptions[product['name']] ??
-                                          'No description available for this product',
+                                  image: product['image'] ?? 'assets/images/default.jpg',
+                                  imageName: product['name'] ?? 'Unknown Product',
+                                  description: productDescriptions[product['name']] ??
+                                      'No description available for this product',
+                                      imageprice: imageprice[index],
                                 ),
                               ),
                             );
@@ -177,6 +185,7 @@ class barathi extends StatelessWidget {
                             color: Colors.transparent,
                             elevation: 0,
                             child: Container(
+                              padding: EdgeInsets.zero,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
@@ -185,10 +194,10 @@ class barathi extends StatelessWidget {
                                 ),
                               ),
                               child: Transform.translate(
-                                offset: const Offset(50, -50),
+                                offset: const Offset(70, -70),
                                 child: Container(
                                   margin: const EdgeInsets.symmetric(
-                                      horizontal: 65, vertical: 63),
+                                      horizontal: 80, vertical: 75),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     color: Colors.white,
@@ -201,7 +210,7 @@ class barathi extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ),
+                        );}
                       )
                       .toList(),
                 ),
@@ -217,16 +226,13 @@ class barathi extends StatelessWidget {
           backgroundColor: Colors.white70,
           onDestinationSelected: (index) {
             if (index == 1) {
-              Get.to(() => const Category(category: 'All Category'));                
-            }
-            else  if (index == 2) {
+              Get.to(() => const Category(category: 'All Category'));
+            } else if (index == 2) {
               Get.to(() => const Cart());
-            }
-            else if (index == 3 ) {
+            } else if (index == 3) {
               Get.to(() => const Order());
             }
           },
-          
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.home),
@@ -237,8 +243,8 @@ class barathi extends StatelessWidget {
               icon: Icon(Icons.select_all_rounded),
               selectedIcon: Icon(Icons.all_out_outlined),
               label: 'All Category',
-            ),           
-             NavigationDestination(
+            ),
+            NavigationDestination(
               icon: Icon(Icons.shopping_cart_outlined),
               selectedIcon: Icon(Icons.shopping_cart),
               label: 'Cart',
@@ -247,13 +253,10 @@ class barathi extends StatelessWidget {
               icon: Icon(Icons.menu),
               selectedIcon: Icon(Icons.menu_open),
               label: 'Order',
-            ),           
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
-

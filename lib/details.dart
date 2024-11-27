@@ -158,7 +158,7 @@ class Details extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 120),                  
+                  padding: const EdgeInsets.only(left: 100),                  
                   child: ElevatedButton.icon(onPressed: (){
                     Navigator.push(
                         context, 
