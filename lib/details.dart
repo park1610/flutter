@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pargavan/cart.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
   final String image;       // Image path
   final String imageName;   // Image Name or Title
   final double? imageprice; // Nullable price
@@ -17,6 +17,11 @@ class Details extends StatelessWidget {
     this.imageprice, 
   });
 
+  @override
+  State<Details> createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,7 @@ class Details extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
                   image: DecorationImage(
-                    image: AssetImage(image),
+                    image: AssetImage(widget.image),
                     fit: BoxFit.cover,
                   ),
                   boxShadow: [
@@ -70,14 +75,14 @@ class Details extends StatelessWidget {
                   children: [
                     Text(
                       textAlign: TextAlign.center,
-                      imageName,                    
+                      widget.imageName,                    
                       style: const TextStyle(   
                         fontSize: 25,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                     Text(
-                           '₹$imageprice' ,
+                           '₹${widget.imageprice}' ,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -88,7 +93,7 @@ class Details extends StatelessWidget {
                 ),                
                 const SizedBox(height: 10),
                 Text(
-                  description,
+                  widget.description,
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black,
@@ -127,8 +132,7 @@ class Details extends StatelessWidget {
             ),          
           ),
         ],
-      ),  
-        
+      ),         
       bottomSheet: BottomAppBar( 
         padding: EdgeInsets.zero,        
         shape:const CircularNotchedRectangle(),           
@@ -148,17 +152,9 @@ class Details extends StatelessWidget {
               )
             ),
             child: Row(
-              children: [
-                Text(
-                  '₹$imageprice',
-                  style: const TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+              children: [             
                 Padding(
-                  padding: const EdgeInsets.only(left: 100),                  
+                  padding: const EdgeInsets.only(left: 200),                  
                   child: ElevatedButton.icon(onPressed: (){
                     Navigator.push(
                         context, 
@@ -169,9 +165,7 @@ class Details extends StatelessWidget {
                   label: const Text(
                     'Add to Cart' ,
                     style: TextStyle(color: Colors.black),
-                    ),
-                    
-                                
+                    ),                                
                   ),
                 )
               ],

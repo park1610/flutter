@@ -103,6 +103,26 @@ class _SignupState extends State<Signup> {
                         return value == null || value.isEmpty ? 'Enter Password' : null;
                       },
                     ),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      controller: passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: _buildInputDecoration(
+                        'Confirm Password',
+                        'Enter Password',
+                        Icons.lock,
+                        Colors.black,
+                      ),
+                      obscureText: true,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                      validator: (value) {
+                        return value == null || value.isEmpty ? 'Confirm Enter Password' : null;
+                      },
+                    ),
                     const SizedBox(height: 10),                    
                     DropdownButtonFormField<String>(  
                       decoration: _buildInputDecoration(                        

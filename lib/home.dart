@@ -7,13 +7,13 @@ import 'order.dart';
 import 'category.dart'; // Ensure this import points to your Category widget.
 
 class barathi extends StatefulWidget {
-  barathi({super.key});
+  const barathi({super.key});
 
   @override
-  State<barathi> createState() => _barathiState();
+  State<barathi> createState() => _BarathiState();
 }
 
-class _barathiState extends State<barathi> {
+class _BarathiState extends State<barathi> {
   final List<Map<String, String>> _products = [
     {'image': 'assets/images/Ballchair.jpg', 'name': 'Ballchair'},
     {'image': 'assets/images/Massagechair.jpg', 'name': 'Massagechair'},
@@ -25,7 +25,7 @@ class _barathiState extends State<barathi> {
     {'image': 'assets/images/Armchair.jpg', 'name': 'Armchair'},
   ];
 
-List<double>imageprice =[10,20,30,40,50,60,70,80]; 
+  List<double> imageprice = [10, 20, 30, 40, 50, 60, 70, 80];
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +36,16 @@ List<double>imageprice =[10,20,30,40,50,60,70,80];
         leading: Builder(
           builder: (context) {
             return IconButton(
-              icon: const Icon(Icons.menu),
+              icon: const Icon(Icons.sort_rounded),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
+              
             );
           },
         ),
         title: const Text("Home"),
-      ),      
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -72,29 +73,27 @@ List<double>imageprice =[10,20,30,40,50,60,70,80];
             ),
           ],
         ),
-      
       ),
-      body: SafeArea(        
+      body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(9.0),
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(                  
-                    borderRadius: BorderRadius.circular(90),                  
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: "Search you're looking for chair",
-                  prefixIcon: Icon(Icons.search)
+                  hintText: "Search what you're looking for",
+                  prefixIcon: const Icon(Icons.search),
                 ),
               ),
-              SizedBox(height: 10),            
-              Container(   
-                padding: EdgeInsets.zero,                         
-                width: MediaQuery.of(context).size.width*1,
-                height: 250,              
-                 margin: const EdgeInsets.symmetric(horizontal: 7.0),
+              const SizedBox(height: 10),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 250,
+                margin: const EdgeInsets.symmetric(horizontal: 7.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: const DecorationImage(
@@ -103,7 +102,7 @@ List<double>imageprice =[10,20,30,40,50,60,70,80];
                   ),
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(
@@ -159,60 +158,55 @@ List<double>imageprice =[10,20,30,40,50,60,70,80];
               ),
               const SizedBox(height: 20),
               Expanded(
-                child: GridView.count(
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 5,vertical: 30),                  
+                  scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: List.generate(_products.length, (index) {
-            final product = _products[index];
-            return GestureDetector(
-              onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Details(
-                                  image: product['image'] ?? 'assets/images/default.jpg',
-                                  imageName: product['name'] ?? 'Unknown Product',
-                                  description: productDescriptions[product['name']] ??
-                                      'No description available for this product',
-                                      imageprice: imageprice[index],
-                                ),
-                              ),
-                            );
-                          },
-                          child: Card(
-                            color: Colors.transparent,
-                            elevation: 0,
-                            child: Container(
-                              padding: EdgeInsets.zero,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: DecorationImage(
-                                  image: AssetImage(product['image']!),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              child: Transform.translate(
-                                offset: const Offset(70, -70),
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 80, vertical: 75),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.white,
-                                  ),
-                                  child: const Icon(
-                                    Icons.bookmark_border,
-                                    size: 15,
-                                  ),
-                                ),
-                              ),
+                  itemCount: _products.length,
+                  itemBuilder: (context, index) {
+                    final product = _products[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Details(
+                              image: product['image']!,
+                              imageName: product['name'] ?? 'Unknown Product',
+                              description: 'No description available for this product',
+                              imageprice: imageprice[index],
                             ),
                           ),
-                        );}
+                        );
+                      },
+                      child: Container(
+                        width: 200,
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage(product['image']!),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                         child: Transform.translate(
+                                offset: const Offset(70, -120),
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 75, vertical: 125),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.transparent,
+                                  ),
+                                  child: const Icon(
+                                    Icons.shopping_bag_outlined,
+                                    size: 25,
+                      ),
+                                )
+                         )
                       )
-                      .toList(),
+                    );
+                  },
                 ),
               ),
             ],

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pargavan/signup.dart';
-import 'package:pargavan/home.dart';
-void main() {
-  runApp(const MyApp());     
-}
+import 'package:pargavan/home.dart'; // Ensure this file exists and contains the `barathi` widget.
 
+void main() {
+  runApp(const MyApp());
+}
 
 class SnackbarGlobal {
   static GlobalKey<ScaffoldMessengerState> key =
       GlobalKey<ScaffoldMessengerState>();
-
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
 final newkey = GlobalKey<FormState>();
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
-TextEditingController namecontroller =TextEditingController();
-TextEditingController gendercontroller =TextEditingController();
 
 class _MyAppState extends State<MyApp> {
   @override
@@ -47,9 +46,9 @@ class _MyAppState extends State<MyApp> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
-            ),            
+            ),
           ),
-        ),        
+        ),
         home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.deepPurple,
@@ -102,63 +101,53 @@ class _MyAppState extends State<MyApp> {
                     ),
                     obscureText: true,
                     validator: (value) {
-                      return value == null || value.isEmpty ? 'Enter Password' : null;
+                      return value == null || value.isEmpty
+                          ? 'Enter Password'
+                          : null;
                     },
                   ),
                   const SizedBox(height: 20),
-                  Column(
-                    children: [
-                      MaterialButton(
-                        minWidth: double.infinity,
-                        onPressed: () {
-                          if (newkey.currentState!.validate()) {
-                            Get.to(barathi());
-                            emailController.clear();
-                            passwordController.clear();  
-                            // print(emailController);
-                            // print(passwordController);      
-
-                          }
-                        },
-                        color: Colors.deepPurple,
-                        textColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        elevation: 5,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                        ),
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                  MaterialButton(
+                    minWidth: double.infinity,
+                    onPressed: () {
+                      if (newkey.currentState!.validate()) {
+                        Get.to(() => const barathi()); // Navigate to `barathi` widget
+                        emailController.clear();
+                        passwordController.clear();
+                      }
+                    },
+                    color: Colors.deepPurple,
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    elevation: 5,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const SizedBox(height: 10),
-                      MaterialButton(
-                        minWidth: double.infinity,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Don\'t have an account?',
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                      TextButton(
                         onPressed: () {
-                          Get.to(const Signup());
+                          Get.to(() => const Signup());
                         },
-                        color: Colors.deepPurple,
-                        textColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        elevation: 5,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 5,
-                        ),
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                        // style: ButtonStyle(
+                        //   foregroundColor:
+                        //       MaterialStateProperty.all(Colors.green),
+                        // ),
+                        child: const Text('Sign up'),
                       ),
                     ],
                   ),
@@ -171,4 +160,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
