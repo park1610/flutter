@@ -14,7 +14,9 @@ analyzer:
     dead_code: ignore
     depend_on_referenced_packages: ignore
     prefer_const_constructors: ignore
+    prefer_const_literals_to_create_immutables: ignore
     prefer_typing_uninitialized_variables: ignore
+    unused_field: ignore
     unused_import: ignore
     unused_label: ignore
     use_function_type_syntax_for_parameters: ignore

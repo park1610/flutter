@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pargavan/cart.dart';
+import 'package:pargavan/description.dart';
 
 class Details extends StatefulWidget {
   final String image;       // Image path
@@ -74,21 +75,14 @@ class _DetailsState extends State<Details> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       widget.imageName,                    
                       style: const TextStyle(   
                         fontSize: 25,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w900,                      
                       ),
                     ),
-                    Text(
-                           '₹${widget.imageprice}' ,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.green,
-                      ),
-                    ),                  
+                                      
                   ],
                 ),                
                 const SizedBox(height: 10),
@@ -143,28 +137,34 @@ class _DetailsState extends State<Details> {
             height: MediaQuery.of(context).size.height*10,        
             decoration: BoxDecoration( 
               shape: BoxShape.rectangle,           
-              color: Colors.grey[400],                                   
-              borderRadius: const BorderRadius.only(         
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0), 
-                topLeft: Radius.circular(0),
-                topRight: Radius.circular(0),                        
-              )
+              color: Colors.grey[300],                                                 
+              borderRadius:  BorderRadius.circular(10)
+                      
+                                       
+              
             ),
             child: Row(
-              children: [             
+              children: [   
+                Text(
+                      '₹${widget.imageprice!.toStringAsFixed(0)}' ,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),                            
                 Padding(
-                  padding: const EdgeInsets.only(left: 200),                  
+                  padding: const EdgeInsets.only(left: 160),                  
                   child: ElevatedButton.icon(onPressed: (){
                     Navigator.push(
                         context, 
                         MaterialPageRoute(builder: (context) => Cart()),
                     );                                    
                   },                
-                  icon: const Icon(Icons.send,color: Colors.black,),          
+                  icon: const Icon(Icons.shopify,color: Colors.black, size: 20),          
                   label: const Text(
-                    'Add to Cart' ,
-                    style: TextStyle(color: Colors.black),
+                    'Buy Now' ,
+                    style: TextStyle(color: Colors.black,fontSize: 15),
                     ),                                
                   ),
                 )

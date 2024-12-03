@@ -111,7 +111,7 @@ class _MyAppState extends State<MyApp> {
                     minWidth: double.infinity,
                     onPressed: () {
                       if (newkey.currentState!.validate()) {
-                        Get.to(() => const barathi()); // Navigate to `barathi` widget
+                        Get.to(() =>  barathi()); // Navigate to `barathi` widget
                         emailController.clear();
                         passwordController.clear();
                       }
