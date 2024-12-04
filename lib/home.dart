@@ -29,34 +29,15 @@ class _barathiState extends State<barathi> {
     {'image': 'assets/images/Red Sofa.jpg', 'name': 'Red Sofa', 'category': 'Sofas'},
   ];
 
-  final Map<String, String> productDescriptions = {
-  'Ball Chair': 'The Ball Chair is a modern piece of furniture that provides a comfortable and stylish seating experience.',
-  'Massage Chair': 'The Massage Chair offers luxurious comfort with relaxing massage features for ultimate relaxation.',
-  'Cantilever Chair': 'The Cantilever Chair boasts a sleek, minimalist design with a sturdy metal frame.',
-  'Stool Chair': 'The Stool Chair is a compact, versatile seating option, perfect for small spaces.',
-  'Tulip Chair': 'The Tulip Chair features a unique design with a flared base and a cozy cushioned seat.',
-  'Ladder Back Chair': 'The Ladder Back Chair combines traditional style with modern comfort, featuring a sturdy wooden frame.',
-  'Throne Chair': 'The Throne Chair exudes elegance and grandeur, designed to make a bold statement.',
-  'Arm Chair': 'The Armchair is a timeless classic with plush cushions and supportive armrests for cozy seating.',
-  'Dinning Table':'A dining table is a table that is used for having meals on.',
-  'Wood Table':'Many tables are made of wood or wood-based products some are made of other materials including metal and glass.',
-  'Grey Sofa':'A sofa is a piece of furniture that a few people can comfortably sit on together.',
-  'Brown Sofa':'a long upholstered seat usually with arms and a back and often convertible into a bed.',
-  'Red Sofa':'a long, soft seat with a back and usually arms, large enough for two or more people to sit on.',
-};
-
-  final List<int> _prices = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 45, 55, 65];  
-
-  List<Map<String, String>> getProductsByCategory(String category) {
-    return _products.where((product) => product['category'] == category).toList();
-  }
+  final List<Map<String, String>> popularProducts = [
+    {'popular': 'assets/images/Stoolchair.jpg', 'name': 'Stool Chair', 'category': 'Chairs'},
+    {'popular': 'assets/images/Cantileverchair.jpg', 'name': 'Cantilever Chair', 'category': 'Chairs'},
+    {'popular': 'assets/images/Wood Table.jpg', 'name': 'Wood Table', 'category': 'Tables'},
+    {'popular': 'assets/images/Brown Sofa.jpg', 'name': 'Brown Sofa', 'category': 'Sofas'},
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final chairs = getProductsByCategory('Chairs');
-    final tables = getProductsByCategory('Tables');
-    final sofas = getProductsByCategory('Sofas');
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -66,23 +47,16 @@ class _barathiState extends State<barathi> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
+          children: const [
+            DrawerHeader(
               decoration: BoxDecoration(color: Colors.grey),
               child: Text(
                 'Settings',
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
-            ListTile(
-              title: const Text('Profile'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              title: const Text('Account'),
-              onTap: () => Navigator.pop(context),
-            ),
-            SizedBox(height: 20),
+            ListTile(title: Text('Profile')),
+            ListTile(title: Text('Account')),
           ],
         ),
       ),
@@ -94,28 +68,24 @@ class _barathiState extends State<barathi> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide(width: 0.8),
+                  borderSide: const BorderSide(width: 0.8),
                 ),
-                hintText: "Search you're looking for",
-                prefixIcon: Icon(Icons.search),                
+                hintText: "Search what you're looking for",
+                prefixIcon: const Icon(Icons.search),
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.all(1.0)),
-          _buildHorizontalScrollView(),  
-          _buildCategorySection('Chairs', chairs),
-          _buildCategorySection('Tables', tables),
-          _buildCategorySection('Sofas', sofas),
+          _buildHorizontalScrollView(),
+          _buildCategoryIcons(),
+          _buildPopularProductsList(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.grey[300],
         onDestinationSelected: (index) {
           if (index == 1) {
-            Get.to(() => const Category(category: 'All Category'));
-          } else if (index == 2) {
             Get.to(() => const Cart());
-          } else if (index == 3) {
+          } else if (index == 2) {
             Get.to(() => const Order());
           }
         },
@@ -124,11 +94,6 @@ class _barathiState extends State<barathi> {
             icon: Icon(Icons.home),
             selectedIcon: Icon(Icons.home_filled),
             label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.select_all_rounded),
-            selectedIcon: Icon(Icons.all_out_outlined),
-            label: 'All Category',
           ),
           NavigationDestination(
             icon: Icon(Icons.shopping_cart_outlined),
@@ -155,89 +120,156 @@ class _barathiState extends State<barathi> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height*0.3,
+        height: MediaQuery.of(context).size.height * 0.3,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: banners.length, 
+          itemCount: banners.length,
           itemBuilder: (context, index) {
             final banner = banners[index];
             return GestureDetector(
               onTap: () {
-              
                 Get.to(() => Category(category: banner['category']!));
               },
               child: Container(
-                width: MediaQuery.of(context).size.width*0.9,
+                width: MediaQuery.of(context).size.width * 0.9,
                 margin: const EdgeInsets.symmetric(horizontal: 6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     image: AssetImage(banner['image']!),
-                    fit: BoxFit.cover,                    
+                    fit: BoxFit.cover,
                   ),
-                ),                
-              ),                             
-            );            
+                ),
+              ),
+            );
           },
         ),
       ),
-    );    
-  } 
+    );
+  }
 
-  Widget _buildCategorySection(String categoryName, List<Map<String, String>> products) {
+  Widget _buildCategoryIcons() {
+    final List<Map<String, dynamic>> categories = [
+      {'name': 'All', 'icon': Icons.apps, 'category': 'All', 'color': Colors.blue},
+      {'name': 'Chairs', 'icon': Icons.chair_outlined, 'category': 'Chairs', 'color': Colors.green},
+      {'name': 'Tables', 'icon': Icons.table_bar_outlined, 'category': 'Tables', 'color': Colors.orange},
+      {'name': 'Sofas', 'icon': Icons.weekend_outlined, 'category': 'Sofas', 'color': Colors.purple},
+    ];
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [          
-
-        // Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   // child: Text(
-        //   //   categoryName,
-        //   //   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        //   // ),
-        // ),
-        // GridView.builder(
-        //   shrinkWrap: true,
-        //   physics: const BouncingScrollPhysics(),
-        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        //     crossAxisCount: 3,
-        //     crossAxisSpacing: 5,
-        //     mainAxisSpacing: 5,
-        //     childAspectRatio: 0.6,
-        //   ),
-        //   itemCount: products.length,
-        //   itemBuilder: (context, index) {
-        //     final product = products[index];
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Navigator.push(
-        //           context,MaterialPageRoute(
-        //            builder: (context) => Details(
-        //             image: product['image'] ?? 'default_image_path.png',
-        //             imageName: product['name'] ?? 'Unknown Product',
-        //             description: productDescriptions[product['name'] ] ?? 'Description of the product',
-        //             imageprice: _prices[index],
-        //           ),
-
-        //           ),
-
-        //         );
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.all(8),
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(10),
-        //           image: DecorationImage(
-        //             image: AssetImage(product['image']!),
-        //             fit: BoxFit.cover,
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Text(
+          'All Categories',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 25,
+          runSpacing: 10,
+          children: categories.map((category) {
+            return GestureDetector(
+              onTap: () {
+                Get.to(() => Category(category: category['category']));
+              },
+              child: Column(
+                children: [
+                  Container(
+                    width: 55,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: category['color'],
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Icon(
+                      category['icon'],
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    category['name'],
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+        ),
       ],
+    );
+  }
+
+  Widget _buildPopularProductsList() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Popular Products',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: popularProducts.length,
+            itemBuilder: (context, index) {
+              final product = popularProducts[index];
+              return GestureDetector(
+                onTap: () {
+                  Get.to(() => Category(category: product['category']!));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: ListTile(
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        product['popular']!,
+                        fit: BoxFit.cover,
+                        width: 60,
+                        height: 60,
+                      ),
+                    ),
+                    title:  Text(
+                          '${product['name']}',
+                        style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      product['name']!,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

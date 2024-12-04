@@ -82,8 +82,7 @@ class _DetailsState extends State<Details> {
                         fontWeight: FontWeight.w900,                      
                       ),
                     ),
-                                      
-                  ],
+                    ],
                 ),                
                 const SizedBox(height: 10),
                 Text(
@@ -138,10 +137,7 @@ class _DetailsState extends State<Details> {
             decoration: BoxDecoration( 
               shape: BoxShape.rectangle,           
               color: Colors.grey[300],                                                 
-              borderRadius:  BorderRadius.circular(10)
-                      
-                                       
-              
+              borderRadius:  BorderRadius.circular(10)       
             ),
             child: Row(
               children: [   
@@ -152,8 +148,8 @@ class _DetailsState extends State<Details> {
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),
-                    ),                            
-                Padding(
+                    ),
+                     Padding(
                   padding: const EdgeInsets.only(left: 160),                  
                   child: ElevatedButton.icon(onPressed: (){
                     Navigator.push(
@@ -165,8 +161,8 @@ class _DetailsState extends State<Details> {
                   label: const Text(
                     'Buy Now' ,
                     style: TextStyle(color: Colors.black,fontSize: 15),
-                    ),                                
-                  ),
+                    )
+                    ),
                 )
               ],
             ),
