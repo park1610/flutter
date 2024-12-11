@@ -149,21 +149,18 @@ class _DetailsState extends State<Details> {
                         color: Colors.black,
                       ),
                     ),
-                     Padding(
-                  padding: const EdgeInsets.only(left: 160),                  
-                  child: ElevatedButton.icon(onPressed: (){
-                    Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => Cart()),
-                    );                                    
-                  },                
-                  icon: const Icon(Icons.shopify,color: Colors.black, size: 20),          
-                  label: const Text(
-                    'Buy Now' ,
-                    style: TextStyle(color: Colors.black,fontSize: 15),
-                    )
-                    ),
-                )
+                     ElevatedButton.icon(onPressed: (){
+                       Navigator.push(
+                           context, 
+                           MaterialPageRoute(builder: (context) => Cart()),
+                       );                                    
+                     },                
+                     icon: const Icon(Icons.shopify,color: Colors.black, size: 20),          
+                     label: const Text(
+                       'Buy Now' ,
+                       style: TextStyle(color: Colors.black,fontSize: 15),
+                       )
+                       )
               ],
             ),
           ),

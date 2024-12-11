@@ -30,11 +30,20 @@ class _barathiState extends State<barathi> {
   ];
 
   final List<Map<String, String>> popularProducts = [
-    {'popular': 'assets/images/Stoolchair.jpg', 'name': 'Stool Chair', 'category': 'Chairs'},
-    {'popular': 'assets/images/Cantileverchair.jpg', 'name': 'Cantilever Chair', 'category': 'Chairs'},
-    {'popular': 'assets/images/Wood Table.jpg', 'name': 'Wood Table', 'category': 'Tables'},
-    {'popular': 'assets/images/Brown Sofa.jpg', 'name': 'Brown Sofa', 'category': 'Sofas'},
+    {'image': 'assets/images/Stoolchair.jpg', 'name': 'Stool Chair', 'category': 'Chairs'},
+    // {'image': 'assets/images/Cantileverchair.jpg', 'name': 'Cantilever Chair', 'category': 'Chairs'},
+    {'image': 'assets/images/Wood Table.jpg', 'name': 'Wood Table', 'category': 'Tables'},
+    {'image': 'assets/images/Brown Sofa.jpg', 'name': 'Brown Sofa', 'category': 'Sofas'},
   ];
+
+  final List<double> _prices = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 45, 55, 65];
+
+  final Map<String, String> productDescriptions = {
+    'Stool Chair': 'A stylish stool chair for your comfort.',
+    'Cantilever Chair': 'Ergonomic cantilever chair for your home or office.',
+    'Wood Table': 'Durable wooden table, perfect for dining or work.',
+    'Brown Sofa': 'Luxurious brown sofa for a cozy living room.',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -200,6 +209,7 @@ class _barathiState extends State<barathi> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  SizedBox(height:30),
                 ],
               ),
             );
@@ -208,68 +218,70 @@ class _barathiState extends State<barathi> {
       ],
     );
   }
-
   Widget _buildPopularProductsList() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Popular Products',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Popular Products',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
           ),
-          const SizedBox(height: 10),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: popularProducts.length,
-            itemBuilder: (context, index) {
-              final product = popularProducts[index];
-              return GestureDetector(
-                onTap: () {
-                  Get.to(() => Category(category: product['category']!));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListTile(
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        product['popular']!,
-                        fit: BoxFit.cover,
-                        width: 60,
-                        height: 60,
-                      ),
+        ),
+        const SizedBox(height: 0.10),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: popularProducts.length,
+          itemBuilder: (context, index) {
+            final product = popularProducts[index];
+            return GestureDetector(
+              onTap: () {
+                Get.to(() => Details(
+                      image: product['image']!,
+                      imageName: product['name']!,
+                      description: productDescriptions[product['name']]!,
+                      imageprice: _prices[index],
+                    ));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      product['image']!,
+                      fit: BoxFit.cover,
+                      width: 60,
+                      height: 60,
                     ),
-                    title:  Text(
-                          '${product['name']}',
-                        style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  title: Text(
+                    product['name']!,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                    subtitle: Text(
-                      product['name']!,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16,
+                  ),
+                  subtitle: Text(
+                    product['category']!,
+                    style: const TextStyle(
+                      fontSize: 14,
                       color: Colors.grey,
                     ),
                   ),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.grey,
+                  ),
                 ),
-              );
-            },
-          ),
-        ],
-      ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

@@ -56,8 +56,8 @@ class _CartState extends State<Cart> {
                ), 
                SizedBox(height: 30),
                SizedBox(
-                 width: double.infinity,
-                 height: 60,
+                 width: MediaQuery.of(context).size.width*10,
+                 height: 50,
                  child: ElevatedButton.icon(onPressed: (){
                     Navigator.push(
                         context, 
